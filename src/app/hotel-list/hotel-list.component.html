@@ -1,0 +1,45 @@
+<h1 class="mt-4 text-center">{{ title}}</h1>
+
+<button class="btn btn-primary ms-4 d-flex" (click)="afficherCacher()">
+    <span class="material-icons">
+        {{showBadge ? "visibility_off" : "visibility"}}
+    </span>
+    <span class="ml-2">
+        {{ showBadge ? "Cacher": "Affircher"}} Nouveau Hotel
+    </span>
+</button>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <p class="">Rechercher</p>
+            <b>{{ hotelFilter }}</b>
+        </div>
+        <div class="col-lg-9 col-md-6 col-sm-12">
+            <div class="col">
+                <input type="text" class="form-control" [(ngModel)]="hotelFilter">
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col" *ngFor="let hotel of filteredHotel">
+            <div class="card mt-4 shadow" style="width: 18rem;">
+                <img src="{{ hotel.hotelImg }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ hotel.hotelName}}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
+                        content.</p>
+                    <div class="text-dark text-left">
+                        {{ hotel.price | currency : "FCFA":"symbol":"1.2-2":"fr"}}
+                    </div>
+                    <span class="btn btn-warning rounded" *ngIf="showBadge">Nouveau</span><br /><br />
+                    <a routerLink="/reservation" class="btn btn-primary">Reservation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
